@@ -43,6 +43,39 @@ void postorder(Node* root){
     cout << root->val << " ";
 }
 
+void level_order(Node* root){
+    if(root == NULL) return;
+    queue<Node*> q;
+    q.push(root);
+
+    while(!q.empty()){
+        // 1. Bring out front
+        Node* front = q.front();      
+        q.pop();      
+      
+        // 2. Work with Node      
+        cout << front->val << " ";      
+      
+        // Push Children in queue      
+        if(front->left){      
+            q.push(front->left);      
+        }      
+        if(front->right){      
+            q.push(front->right);      
+        }
+    }
+}
+
+int count_node_using_recursion(Node* root){
+    if(root == NULL){
+        return 0;
+    }
+
+    int l = count_node_using_recursion(root->left);
+    int r = count_node_using_recursion(root->right);
+    return l+r+1;
+}
+
 int main() {
     Node* root = new Node(10);
     Node* a = new Node(20);
@@ -57,6 +90,6 @@ int main() {
     b->left = d;
     b->right = e;
 
-    preorder(root);
+    level_order(root);
     return 0;
 }
