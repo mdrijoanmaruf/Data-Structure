@@ -14,14 +14,16 @@ class Node{
     }
 };
 
-int count_nodes(Node* root){
-    
+int count_leaf_node(Node* root){
     if(root == NULL)
         return 0;
     
-    int left = count_nodes(root->left);
-    int right = count_nodes(root->right);
-    return left + right + 1;
+    if(root->left == NULL && root->right == NULL){
+        return 1;
+    }
+    int left = count_leaf_node(root->left);
+    int right = count_leaf_node(root->right);
+    return left + right;
 }
 
 int main() {
@@ -38,6 +40,6 @@ int main() {
     b->left = d;
     b->right = e;
 
-    cout << count_nodes(root) << endl;
+    cout << count_leaf_node(root) << endl;
     return 0;
 }

@@ -1,3 +1,4 @@
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -14,14 +15,16 @@ class Node{
     }
 };
 
-int count_nodes(Node* root){
-    
+int max_height(Node* root){
     if(root == NULL)
         return 0;
     
-    int left = count_nodes(root->left);
-    int right = count_nodes(root->right);
-    return left + right + 1;
+    if(root->left == NULL && root->right == NULL){
+        return 0;
+    }
+    int left = max_height(root->left);
+    int right = max_height(root->right);
+    return max(left , right) + 1;
 }
 
 int main() {
@@ -38,6 +41,6 @@ int main() {
     b->left = d;
     b->right = e;
 
-    cout << count_nodes(root) << endl;
+    cout << max_height(root) << endl;
     return 0;
 }

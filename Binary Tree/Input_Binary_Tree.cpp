@@ -38,29 +38,25 @@ Node* input_tree(){
         // 2. Work with this node
         int l, r;
         Node* myLeft, *myRight;
-        if(l == -1){
+        if(l == -1)
             myLeft = NULL;
-        } else {
+        else 
             myLeft = new Node(l);
-        }
 
-        if(r == -1){
+        if(r == -1)
             myRight = NULL;
-        } else {
+        else 
             myRight = new Node(r);
-        }
 
         p->left = myLeft;
         p->right = myRight;
 
 
         // 3. Push Children
-        if(p->left){
+        if(p->left)
             q.push(p->left);
-        }
-        if(p->right){
+        if(p->right)
             q.push(p->right);
-        }
     }
     return root;
 }
